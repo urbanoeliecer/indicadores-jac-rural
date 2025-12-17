@@ -1,0 +1,324 @@
+<?php
+// === consolidado.php ===
+// modo: departamento / municipio / junta
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "bdsara";     
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+// =====================================================================
+//  Consolidado de Proyectos con Filtros, Agrupación y Paginación
+// =====================================================================
+//  Requisitos incluidos:
+//  ✔ Filtro por fechas
+//  ✔ Filtro por departamento
+//  ✔ Agrupar por: departamento / municipio / vereda (junta)
+//  ✔ Reglas especiales por tipo de agrupación
+//  ✔ Opción para agrupar por año (YEAR(fechaInicio))
+//  ✔ Paginador con orden dinámico según agrupación
+//  ✔ Usa la vista consolidada que generamos
+// =====================================================================
+
+// ---------------------------------------------------------------------
+// 1. Parámetros de búsqueda
+// ---------------------------------------------------------------------
+$fechaInicio = $_GET['fecha_inicio'] ?? '';
+$fechaFin    = $_GET['fecha_fin'] ?? '';
+$departamento = $_GET['departamento'] ?? '';
+$agrupacion = $_GET['agrupacion'] ?? 'vereda'; // departamento / municipio / vereda
+$agruparAnyo = isset($_GET['agrupar_anio']) ? intval($_GET['agrupar_anio']) : 0;
+$orden = $_GET['orden'] ?? '';
+// Paginación
+$pagina = isset($_GET['pagina']) ? max(1, intval($_GET['pagina'])) : 1;
+$porPagina = 20;
+$offset = ($pagina - 1) * $porPagina;
+
+// ---------------------------------------------------------------------
+// 2. Construcción del WHERE
+// ---------------------------------------------------------------------
+$where = " WHERE 1=1 ";
+
+if ($fechaInicio !== '' && $fechaFin !== '') {
+    $where .= " AND fechaInicio BETWEEN '$fechaInicio' AND '$fechaFin' ";
+}
+if ($departamento !== '') {
+    $where .= " AND departamento = '$departamento' ";
+}
+
+// ---------------------------------------------------------------------
+// 3. GROUP BY dinámico y seguro
+// ---------------------------------------------------------------------
+$groupFields = [];
+
+if ($agruparAnyo == 1) {
+    $groupFields[] = "YEAR(fechaInicio)";
+}
+
+switch ($agrupacion) {
+    case 'vereda':
+        $groupFields[] = "departamento";
+        $groupFields[] = "municipio";
+        $groupFields[] = "junta";
+        break;
+
+    case 'municipio':
+        $groupFields[] = "departamento";
+        $groupFields[] = "municipio";
+        break;
+
+    case 'departamento':
+    default:
+        $groupFields[] = "departamento";
+        break;
+}
+
+if (count($groupFields) == 0) {
+    $groupFields[] = "departamento";
+}
+
+$groupBy = " GROUP BY " . implode(", ", $groupFields);
+
+// ---------------------------------------------------------------------
+// 4. ORDER BY dinámico
+// ---------------------------------------------------------------------
+$orderBy = " ORDER BY ";
+
+// 1. Si agrupa por año, este orden siempre va primero
+if ($agruparAnyo == 1) {
+    $orderBy .= "YEAR(fechaInicio) ASC, ";
+}
+
+// 2. Orden manual por botones
+switch ($orden) {
+    case 'junta':
+        $orderBy .= "junta ASC";
+        break;
+    case 'monto':
+        $orderBy .= "monto DESC";
+        break;
+    case 'beneficiarios':
+        $orderBy .= "beneficiarios DESC";
+        break;
+    case 'fecha':
+        $orderBy .= "fechaInicio ASC";
+        break;
+
+    default:
+        // 3. Si no hay orden específico, usar orden natural según agrupación
+        switch ($agrupacion) {
+            case 'vereda':
+                $orderBy .= "departamento ASC, municipio ASC, junta ASC";
+                break;
+
+            case 'municipio':
+                $orderBy .= "departamento ASC, municipio ASC";
+                break;
+
+            case 'departamento':
+            default:
+                $orderBy .= "departamento ASC";
+                break;
+        }
+}
+
+
+// ---------------------------------------------------------------------
+// 5. Columnas a seleccionar según agrupación
+// ---------------------------------------------------------------------
+$selectCols = [];
+
+if ($agruparAnyo == 1) {
+    $selectCols[] = "YEAR(fechaInicio) AS anio";
+}
+
+switch ($agrupacion) {
+    case 'vereda':
+        $selectCols[] = "departamento";
+        $selectCols[] = "municipio";
+        $selectCols[] = "junta AS vereda";
+        break;
+
+    case 'municipio':
+        $selectCols[] = "departamento";
+        $selectCols[] = "municipio";
+        $selectCols[] = "COUNT(DISTINCT junta) AS total_juntas";
+        break;
+
+    case 'departamento':
+    default:
+        $selectCols[] = "departamento";
+        $selectCols[] = "COUNT(DISTINCT municipio) AS total_municipios";
+        $selectCols[] = "COUNT(DISTINCT junta) AS total_veredas";
+        break;
+}
+
+$selectCols[] = "COUNT(DISTINCT idProyecto) AS total_proyectos";
+$selectCols[] = "SUM(monto) AS monto";
+$selectCols[] = "SUM(Beneficiarios) AS beneficiarios";
+
+$selectSQL = implode(", ", $selectCols);
+
+// ---------------------------------------------------------------------
+// 6. SQL final
+// ---------------------------------------------------------------------
+$sql = "SELECT $selectSQL
+        FROM vproyectosxjunta
+        $where
+        $groupBy
+        $orderBy
+        LIMIT $offset, $porPagina";
+
+$resultado = $conn->query($sql);
+
+// Para paginador
+$sqlTotal = "SELECT COUNT(*) AS total FROM (
+                SELECT 1
+                FROM vproyectosxjunta
+                $where
+                $groupBy
+            ) AS sub";
+
+$totalRows = $conn->query($sqlTotal)->fetch_assoc()['total'];
+$totalPaginas = ceil($totalRows / $porPagina);
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Consolidado de Proyectos</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #999; padding: 6px; }
+        th { background: #eee; }
+    </style>
+</head>
+<body>
+<h2>Consolidado de Proyectos</h2>
+
+<form method="GET">
+    <div><label>Fecha inicio:</label>
+    <input type="date" name="fecha_inicio" value="<?= $fechaInicio ?>">
+    <label>Fecha fin:</label>
+    <input type="date" name="fecha_fin" value="<?= $fechaFin ?>">
+    <div>
+    <label>Departamento:</label>
+    <input type="text" name="departamento" value="<?= $departamento ?>">
+    <div>
+    <label>Agrupar por:</label>
+    <select name="agrupacion">
+        <option value="ninguna" <?= $agrupacion=='ninguna'?'selected':'' ?>>No agrupar</option>
+        <option value="departamento" <?= $agrupacion=='departamento'?'selected':'' ?>>Departamento</option>
+        <option value="municipio" <?= $agrupacion=='municipio'?'selected':'' ?>>Municipio</option>
+        <option value="vereda" <?= $agrupacion=='vereda'?'selected':'' ?>>Junta / Vereda</option>
+    </select>
+   <div>    
+<label>¿Agrupar por año?</label>
+    <input type="radio" name="agrupar_anio" value="1" <?= $agruparAnyo==1?'checked':'' ?>> Sí
+    <input type="radio" name="agrupar_anio" value="0" <?= $agruparAnyo==0?'checked':'' ?>> No
+    <br>
+    <button type="submit">Filtrar</button>
+    <strong>Ordenar:</strong>
+    <a href="?<?= http_build_query(array_merge($_GET, ['orden'=>'junta'])) ?>">Junta</a> |
+    <a href="?<?= http_build_query(array_merge($_GET, ['orden'=>'monto'])) ?>">Monto</a> |
+    <a href="?<?= http_build_query(array_merge($_GET, ['orden'=>'beneficiarios'])) ?>">Beneficiarios</a> |
+    <a href="?<?= http_build_query(array_merge($_GET, ['orden'=>'fecha'])) ?>">Fecha Inicio</a>
+</form>
+
+<hr>
+
+<?php
+// Obtener máximos reales para barras
+$maxProy = 0;
+$maxBen  = 0;
+$maxMon  = 0;
+$resultado->data_seek(0);
+while($r = $resultado->fetch_assoc()){
+    if ($r['total_proyectos'] > $maxProy) $maxProy = $r['total_proyectos'];
+    if ($r['beneficiarios'] > $maxBen) $maxBen  = $r['beneficiarios'];
+    if ($r['monto'] > $maxMon) $maxMon  = $r['monto'];
+}
+$resultado->data_seek(0);
+?>
+
+<table>
+    <tr>
+        <?php if ($agruparAnyo == 1): ?>
+            <th>Año</th>
+        <?php endif; ?>
+
+        <?php if ($agrupacion == 'departamento'): ?>
+            <th>Departamento</th>
+            <th>Total municipios</th>
+            <th>Total veredas</th>
+
+        <?php elseif ($agrupacion == 'municipio'): ?>
+            <th>Departamento</th>
+            <th>Municipio</th>
+            <th>Total juntas</th>
+
+        <?php else: ?>
+            <th>Departamento</th>
+            <th>Municipio</th>
+            <th>Vereda</th>
+        <?php endif; ?>
+
+        <th>Proyectos</th><th>Gráfica Proyectos</th>
+        <th>Monto</th><th>Gráfica Monto</th>
+        <th>Beneficiarios</th><th>Gráfica Beneficiarios</th>
+    </tr>
+
+    <?php while ($row = $resultado->fetch_assoc()): ?>
+        <tr>
+            <?php if ($agruparAnyo == 1): ?>
+                <td><?= $row['anio'] ?></td>
+            <?php endif; ?>
+
+            <?php if ($agrupacion == 'departamento'): ?>
+                <td><?= $row['departamento'] ?></td>
+                <td><?= $row['total_municipios'] ?></td>
+                <td><?= $row['total_veredas'] ?></td>
+
+            <?php elseif ($agrupacion == 'municipio'): ?>
+                <td><?= $row['departamento'] ?></td>
+                <td><?= $row['municipio'] ?></td>
+                <td><?= $row['total_juntas'] ?></td>
+
+            <?php else: ?>
+                <td><?= $row['departamento'] ?></td>
+                <td><?= $row['municipio'] ?></td>
+                <td><?= $row['vereda'] ?></td>
+            <?php endif;
+$a0 = $maxProy>0? intval(($row['total_proyectos']/$maxProy)*300):0;	
+$a1 = $maxMon>0? intval(($row['monto']/$maxMon)*300):0;    
+$a2 = $maxBen>0? intval(($row['beneficiarios']/$maxBen)*300):0;
+$img0 = '<img src="barra.png" height="20" width="'.$a0.'">'; 
+$img1 = '<img src="barra.png" height="20" width="'.$a1.'">';
+$img2 = '<img src="barra.png" height="20" width="'.$a2.'">';
+	    ?>
+            <td><?= $row['total_proyectos'] ?></td>
+	    <td><?= $img0; ?></td>
+            <td><?= number_format($row['monto']) ?></td>
+            <td><?= $img1; ?></td>
+            <td><?= $row['beneficiarios'] ?></td>
+            <td><?= $img2; ?></td>
+        </tr>
+    <?php endwhile; ?>
+</table>
+
+<br>
+<div>
+    <?php for ($i=1; $i <= $totalPaginas; $i++): ?>
+        <a href="?<?= http_build_query(array_merge($_GET, ['pagina'=>$i])) ?>">
+            <?= $i ?>
+        </a>
+    <?php endfor; ?>
+</div>
+
+</body>
+</html>
+
