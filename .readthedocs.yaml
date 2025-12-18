@@ -13,4 +13,4 @@ mkdocs:
 # Instala los temas visuales necesarios
 python:
   install:
-    - requirements: docs/requirements.txt
+    - requirements: requirements.txt
