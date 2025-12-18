@@ -9,22 +9,16 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
-// =====================================================================
 //  Consolidado de Proyectos con Filtros, Agrupación y Paginación
-// =====================================================================
-//  Requisitos incluidos:
-//  ✔ Filtro por fechas
-//  ✔ Filtro por departamento
-//  ✔ Agrupar por: departamento / municipio / vereda (junta)
-//  ✔ Reglas especiales por tipo de agrupación
-//  ✔ Opción para agrupar por año (YEAR(fechaInicio))
-//  ✔ Paginador con orden dinámico según agrupación
-//  ✔ Usa la vista consolidada que generamos
-// =====================================================================
+//  Filtro por fechas
+//  Filtro por departamento
+//  Agrupa por: departamento / municipio / vereda (junta)
+//  Reglas especiales por tipo de agrupación
+//  Opción para agrupar por año (YEAR(fechaInicio))
+//  Paginador con orden dinámico según agrupación
+//  Usa la vista consolidada que generamos
 
-// ---------------------------------------------------------------------
 // 1. Parámetros de búsqueda
-// ---------------------------------------------------------------------
 $fechaInicio = $_GET['fecha_inicio'] ?? '';
 $fechaFin    = $_GET['fecha_fin'] ?? '';
 $departamento = $_GET['departamento'] ?? '';
@@ -36,11 +30,8 @@ $pagina = isset($_GET['pagina']) ? max(1, intval($_GET['pagina'])) : 1;
 $porPagina = 20;
 $offset = ($pagina - 1) * $porPagina;
 
-// ---------------------------------------------------------------------
 // 2. Construcción del WHERE
-// ---------------------------------------------------------------------
 $where = " WHERE 1=1 ";
-
 if ($fechaInicio !== '' && $fechaFin !== '') {
     $where .= " AND fechaInicio BETWEEN '$fechaInicio' AND '$fechaFin' ";
 }
@@ -48,42 +39,32 @@ if ($departamento !== '') {
     $where .= " AND departamento = '$departamento' ";
 }
 
-// ---------------------------------------------------------------------
 // 3. GROUP BY dinámico y seguro
-// ---------------------------------------------------------------------
 $groupFields = [];
-
 if ($agruparAnyo == 1) {
     $groupFields[] = "YEAR(fechaInicio)";
 }
-
 switch ($agrupacion) {
     case 'vereda':
         $groupFields[] = "departamento";
         $groupFields[] = "municipio";
         $groupFields[] = "junta";
         break;
-
     case 'municipio':
         $groupFields[] = "departamento";
         $groupFields[] = "municipio";
         break;
-
     case 'departamento':
     default:
         $groupFields[] = "departamento";
         break;
 }
-
 if (count($groupFields) == 0) {
     $groupFields[] = "departamento";
 }
-
 $groupBy = " GROUP BY " . implode(", ", $groupFields);
 
-// ---------------------------------------------------------------------
 // 4. ORDER BY dinámico
-// ---------------------------------------------------------------------
 $orderBy = " ORDER BY ";
 
 // 1. Si agrupa por año, este orden siempre va primero

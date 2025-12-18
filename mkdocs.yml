@@ -1,10 +1,10 @@
-site_name: SaraII - Sistema de Indicadores Rurales
+site_name: SaraII - Indicadores Rurales
 theme:
   name: material
   language: es
 
 nav:
-  - Conexión: concect.php
+  - Conexión: conect.md
   - Funciones: funciones.md
   - Inicio: index.md
   - Información Consolidada: infCons.md
@@ -14,3 +14,5 @@ nav:
   - Información de Proyectos: infProy.md
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
+  - roles: tecnico/roles.md
+  - Base de Datos (MySQL): tecnico/bd.md
