@@ -1,1 +1,16 @@
-site_name: My Docs
+site_name: SaraII - Sistema de Indicadores Rurales
+theme:
+  name: material
+  language: es
+
+nav:
+  - Conexión: concect.php
+  - Funciones: funciones.md
+  - Inicio: index.md
+  - Información Consolidada: infCons.md
+  - Información Departamental: infDep.md
+  - Información Municipal: infMun.md
+  - Información Nacional: infNac.md
+  - Información de Proyectos: infProy.md
+  - Revisión de Sesión: revSesion.md
+  - Panel Principal: principal.md
