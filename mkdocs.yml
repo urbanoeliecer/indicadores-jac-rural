@@ -14,5 +14,5 @@ nav:
   - Información de Proyectos: infProy.md
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
-  - roles: tecnico/roles.md
+  - Roles: tecnico/roles.md
   - Base de Datos (MySQL): tecnico/bd.md
