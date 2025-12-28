@@ -8,10 +8,15 @@ nav:
   - Funciones: funciones.md
   - Inicio: index.md
   - Información Consolidada: infCons.md
+  - Informe de Consultas: infConsultas.md
   - Información Departamental: infDep.md
+  - Inf. del Litsado de Ubicaciones: infListUbicaciones.md
   - Información Municipal: infMun.md
   - Información Nacional: infNac.md
-  - Información de Proyectos: infProy.md
+  - Inf Comparativo de Participación: infPartComparativo.md
+  - Inf de Participación por Deparamento: infPartDep.md
+  - Inf de Proyectos: infProy.md
+  - Inf Resumen de Registros: infResRegistros.md
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
   - Base de Datos (MySQL): tecnico/bd.md
