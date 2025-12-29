@@ -2,24 +2,27 @@ site_name: SaraII - Indicadores Rurales
 theme:
   name: material
   language: es
-
 nav:
-  - Conexión: conect.md
-  - Funciones: funciones.md
   - Inicio: index.md
-  - Información Consolidada: infCons.md
-  - Informe de Consultas: infConsultas.md
-  - Información Departamental: infDep.md
-  - Inf. del Litsado de Ubicaciones: infListUbicaciones.md
-  - Información Municipal: infMun.md
-  - Información Nacional: infNac.md
-  - Inf Comparativo de Participación: infPartComparativo.md
-  - Inf de Participación por Deparamento: infPartDep.md
-  - Inf de Proyectos: infProy.md
-  - Inf Resumen de Registros: infResRegistros.md
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
-  - Base de Datos (MySQL): tecnico/bd.md
-  - Requerimientos: tecnico/req.md
-  - Roles: tecnico/roles.md
+  - Coordinador:
+    - Ind Consolidada: coordinador/infCons.md
+    - Ind Departamental: infDep.md
+    - Ind Municipal: infMun.md
+    - Ind Nacional: infNac.md
+  - Admin:
+    - Inf. de Consultas: admin/infConsultas.md
+    - Inf. de Participación - Comparativo: admin/infPartComp.md
+    - Inf. de Participación - Individual: admin/infPartInd.md
+    - Inf. de Proyectos: admin/infProy.md
+    - Inf. del Litsado de Ubicaciones: admin/infListUbic.md
+    - Inf. del Resumen de Registros: admin/infResReg.md
+  - Backend:
+    - Conexión: conect.md
+    - Funciones: funciones.md
+  - Tecnico:
+    - Base de Datos (MySQL): tecnico/bd.md
+    - Requerimientos: tecnico/req.md
+    - Roles: tecnico/roles.md
 
