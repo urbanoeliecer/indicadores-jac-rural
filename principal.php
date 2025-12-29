@@ -5,6 +5,7 @@
 <nav>
   <ul>
     <li><a href="index.php">Inicio</a></li>
+    <li><a href="pricipal.php">Principal</a></li>
     <?php // if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin'): ?>
       <li>
         Admin
