@@ -12,17 +12,17 @@ nav:
     - Ind Municipal: infMun.md
     - Ind Nacional: infNac.md
   - Admin:
-    - Inf. de Consultas: admin/infConsultas.md
-    - Inf. de Participación - Comparativo: admin/infPartComp.md
-    - Inf. de Participación - Individual: admin/infPartInd.md
-    - Inf. de Proyectos: admin/infProy.md
-    - Inf. del Litsado de Ubicaciones: admin/infListUbic.md
-    - Inf. del Resumen de Registros: admin/infResReg.md
+    - Inf. Consultas: admin/infConsultas.md
+    - Inf. Partic-Comp: admin/infPartComp.md
+    - Inf. Partic-Ind: admin/infPartInd.md
+    - Inf. Proyectos: admin/infProy.md
+    - Inf. Ubicaciones: admin/infListUbic.md
+    - Inf. Resumen: admin/infResReg.md
   - Backend:
     - Conexión: conect.md
     - Funciones: funciones.md
   - Tecnico:
-    - Base de Datos (MySQL): tecnico/bd.md
+    - Base de Datos: tecnico/bd.md
     - Requerimientos: tecnico/req.md
     - Roles: tecnico/roles.md
 

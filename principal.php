@@ -13,6 +13,11 @@
         Admin
         <ul>
           <li><a href="admin/infCons.php">Inf. Consolidada</a></li>
+          <li><a href="admin/infListUbic.php">Inf. Ubicaciones</a></li>
+          <li><a href="admin/infPartComp.php">Inf. Comparativo Part.</a></li>
+          <li><a href="admin/infPartInd.php">Inf. Individual Part.</a></li>
+          <li><a href="admin/infProy.php">Inf. de Proyectos</a></li>
+          <li><a href="admin/infResReg.php">Inf. Resumen</a></li>
         </ul>
       </li>
     <?php //endif; ?>
