@@ -1,4 +1,5 @@
 hola
+    <li><a href="pricipal.php">Principal</a></li>
     <?php
 
 /* 
