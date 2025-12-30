@@ -17,10 +17,31 @@ LIMIT 1;
 
 <?php
 
+//phpinfo();
+echo "Antes<br>";
+
+$conn = new mysqli(
+    "127.0.0.1",
+    "root",
+    "",
+    "bdsara",
+    3306
+);
+
+echo "Después<br>";
+//exit();
+$con = new mysqli("localhost", "root", "", "bdsara",3306);
+
+if ($con->connect_error) {
+    die("Error: " . $con->connect_error);
+}
+
+echo "Conexión OK";
+//exit();
 // ===========================
 // 1. Conexión a MySQL
 // ===========================
-$servername = "localhost";
+$servername = "127.0.0.1";
 $username = "root";
 $password = "";
 $dbname = "bdsara";     
