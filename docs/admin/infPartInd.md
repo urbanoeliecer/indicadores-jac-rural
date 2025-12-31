@@ -7,4 +7,4 @@
 - Recalcula los 365 días previos
 - Redibuja el calendario llamando la función
 
-![Calendario tipo Git](../img/infPartInd.png)
+![Calendario tipo Git](img/infPartInd.png)
