@@ -24,9 +24,8 @@
       <li>
         Secretario
         <ul>
-          <li><a href="coordinador/indDep.php">Información Departamental</a></li>
-          <li><a href="coordinador/indMun.php">Información Municipal</a></li>
-          <li><a href="coordinador/indNac.php">Información Nacional</a></li>
+          <li><a href="coordinador/indInter.php">Informe de Intervención</a></li>
+          <li><a href="coordinador/indCons.php">Informe de Consultas</a></li>
         </ul>
       </li>
     <?php //endif; ?>
