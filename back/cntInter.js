@@ -1,46 +1,60 @@
-// JS de interacción para ubicación
-function cargarMunicipios(id){
-    fetch(RUTA_CONTROLADOR + "?ajax=municipios&id=" + id)
-        .then(r => r.text())
-        .then(t => {
-            document.getElementById("mun").innerHTML = t;
-            document.getElementById("jun").innerHTML =
-                '<option value="">Seleccione junta</option>';
-            validar();
-        });
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-function cargarJuntas(id){
-    fetch(RUTA_CONTROLADOR + "?ajax=juntas&id=" + id)
-        .then(r => r.text())
-        .then(t => {
-            document.getElementById("jun").innerHTML = t;
-            validar();
-        });
-}
+    const rol = parseInt(document.getElementById("rol").value);
 
-function validar(){
     const dep = document.getElementById("dep");
     const mun = document.getElementById("mun");
     const jun = document.getElementById("jun");
-    const btn = document.getElementById("btn");
+    const btn = document.getElementById("btnEnviar");
 
-    btn.disabled = !(dep.value && mun.value && jun.value);
-}
+    function validarBoton() {
+        if (rol === 1) btn.disabled = !dep.value;
+        if (rol === 2) btn.disabled = !(dep.value && mun.value);
+        if (rol === 3) btn.disabled = !(mun.value && jun.value);
+    }
 
-document.addEventListener("DOMContentLoaded", function () {
+    function cargarMunicipios(idDep) {
+        fetch(`${RUTA_CONTROLADOR}?ajax=municipios&id=${idDep}`)
+            .then(r => r.text())
+            .then(html => {
+                mun.innerHTML = html;
+                jun.innerHTML = '<option value="">Seleccione junta</option>';
+                validarBoton();
+            });
+    }
 
-    const dep = document.getElementById("dep");
-    const mun = document.getElementById("mun");
+    function cargarJuntas(idMun) {
+        fetch(`${RUTA_CONTROLADOR}?ajax=juntas&id=${idMun}`)
+            .then(r => r.text())
+            .then(html => {
+                jun.innerHTML = html;
+                validarBoton();
+            });
+    }
 
-    // Caso Santander forzado o ya seleccionado
-    if (dep && dep.value) {
+    if (dep) {
+        dep.addEventListener("change", () => {
+            if (dep.value) cargarMunicipios(dep.value);
+            validarBoton();
+        });
+    }
+
+    mun.addEventListener("change", () => {
+        if (mun.value) cargarJuntas(mun.value);
+        validarBoton();
+    });
+
+    jun.addEventListener("change", validarBoton);
+
+    /* Rol 3: Santander precargado */
+    if (rol === 3 && dep.value) {
         cargarMunicipios(dep.value);
     }
 
-    // Caso Betulia forzado
-    if (mun && mun.value) {
-        cargarJuntas(mun.value);
-    }
+    validarBoton();
 });
+
+
+
+
 
