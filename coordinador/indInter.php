@@ -1,84 +1,66 @@
 <?php
-require_once "../back/modInter.php";
-
-$rol = isset($_GET['rol']) ? intval($_GET['rol']) : 1;
-
-$deps = ModInter::departamentos();
-$idSantander = "";
-
-foreach ($deps as $d) {
-    if (strcasecmp($d['nombre'], 'Santander') === 0) {
-        $idSantander = $d['id'];
-    }
-}
+$rol = $_GET['rol'] ?? 0;
 ?>
-<!DOCTYPE html>
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Intervención Territorial</title>
+    <meta charset="utf-8">
+    <title>Intervenciones</title>
+    
+    <script src="../back/cntInter.js"></script>
 </head>
 <body>
 
-<h3>Filtro territorial</h3>
+<!-- Formulario de filtros -->
+<form id="formFiltros">
+    <input type="hidden" name="rol" value="<?= $rol ?>">
 
-<form method="get">
-<input type="hidden" name="rol" value="<?= $rol ?>">
-<input type="hidden" id="rol" value="<?= $rol ?>">
+    <label for="fecha_inicio">Fecha inicio</label>
+    <input type="date" id="fecha_inicio" name="fecha_inicio" required>
 
-<!-- DEPARTAMENTO -->
-<label>Departamento</label><br>
-<select id="dep" name="dep" <?= ($rol == 3) ? 'disabled' : '' ?>>
-    <option value="">Seleccione departamento</option>
-    <?php foreach ($deps as $d): ?>
-        <option value="<?= $d['id'] ?>"
-            <?= ($rol == 3 && $d['id'] == $idSantander) ? 'selected' : '' ?>>
-            <?= $d['nombre'] ?>
-        </option>
-    <?php endforeach; ?>
-</select>
+    <label for="fecha_fin">Fecha fin</label>
+    <input type="date" id="fecha_fin" name="fecha_fin" required>
 
-<?php if ($rol == 3): ?>
-    <input type="hidden" name="dep" value="<?= $idSantander ?>">
-<?php endif; ?>
+    <br><br>
 
-<br><br>
+    <!-- Combos para Departamento, Municipio y Junta -->
+    <select name="iddepartamento" id="departamento" onchange="cargarMunicipios()"></select>
+    <select name="idmunicipio" id="municipio" onchange="cargarJuntas()"></select>
+    <select name="idjunta" id="junta"></select>
 
-<!-- MUNICIPIO -->
-<label>Municipio</label><br>
-<select id="mun" name="mun">
-    <option value="">Seleccione municipio</option>
-</select>
+    <br><br>
 
-<br><br>
-
-<!-- JUNTA -->
-<label>Junta</label><br>
-<select id="jun" name="jun">
-    <option value="">Seleccione junta</option>
-</select>
-
-<br><br>
-
-<button type="submit" id="btnEnviar" disabled>Enviar</button>
+    <!-- Botón para enviar la consulta -->
+    <button type="button" id="btn" onclick="consultarProyectos(event)">Enviar</button>
+    <button type="button" id="consultarBtn">Consultar</button>
 </form>
 
-<?php
-if (isset($_GET['dep'])) {
-    $total = ModInter::contarProyectos(
-        $rol,
-        $_GET['dep'] ?? 0,
-        $_GET['mun'] ?? 0,
-        $_GET['jun'] ?? 0
-    );
-    echo "<h4>Total de proyectos: $total</h4>";
-}
-?>
+<hr>
+
+<!-- Resumen y Detalles de los Proyectos -->
+<div id="resumen"></div>
+<div id="detalle"></div>
 
 <script>
-const RUTA_CONTROLADOR = "../back/cntInter.php";
+    // Cargar departamentos al cargar la página
+
+    //cargarDepartamentos();
+
+    // Función para validar y habilitar el botón de envío
+    function validar() {
+        var dep = document.getElementById("departamento").value;
+        var mun = document.getElementById("municipio").value;
+        var jun = document.getElementById("junta").value;
+        var btn = document.getElementById("btn");
+
+        // Habilitar el botón si los tres campos están seleccionados
+        if (dep && mun && jun) {
+            btn.disabled = false;
+        } else {
+            btn.disabled = true;
+        }
+    }
 </script>
-<script src="../back/cntInter.js"></script>
 
 </body>
 </html>

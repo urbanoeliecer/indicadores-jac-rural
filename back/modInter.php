@@ -37,6 +37,7 @@ class ModInter {
     /* ===== CONTADOR SEGÚN ROL ===== */
     public static function contarProyectos($rol, $idDep, $idMun, $idJun) {
         $db = self::conectar();
+        
         if ($rol == 1) {
             $sql = "SELECT COUNT(*) total
                     FROM vproyectosxjunta
@@ -51,7 +52,7 @@ class ModInter {
                     WHERE idjunta = $idJun";
         }
         //print $sql;
-        print '<br> Rol: '.$rol.', Dep: '.$idDep.', Mun: '.$idMun.', Junta: '.$idJun;
+        print 'Rol: '.$rol.', Dep: '.$idDep.', Mun: '.$idMun.', Junta: '.$idJun;
         return $db->query($sql)->fetch_assoc()['total'];
     }
 }
