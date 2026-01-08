@@ -1,5 +1,6 @@
 <?php
 $rol = $_GET['rol'] ?? 0;
+echo "Consulta SQL: " . $sqlResumen . "<br>";
 ?>
 
 <html lang="es">
@@ -12,14 +13,15 @@ $rol = $_GET['rol'] ?? 0;
 <body>
 
 <!-- Formulario de filtros -->
+
 <form id="formFiltros">
     <input type="hidden" name="rol" value="<?= $rol ?>">
 
     <label for="fecha_inicio">Fecha inicio</label>
-    <input type="date" id="fecha_inicio" name="fecha_inicio" required>
+    <input type="date" id="fecha_inicio" name="fecha_inicio">
 
     <label for="fecha_fin">Fecha fin</label>
-    <input type="date" id="fecha_fin" name="fecha_fin" required>
+    <input type="date" id="fecha_fin" name="fecha_fin">
 
     <br><br>
 
@@ -32,7 +34,7 @@ $rol = $_GET['rol'] ?? 0;
 
     <!-- Botón para enviar la consulta -->
     <button type="button" id="btn" onclick="consultarProyectos(event)">Enviar</button>
-    <button type="button" id="consultarBtn">Consultar</button>
+    <button type="submit" id="consultarBtn">Consultar</button>
 </form>
 
 <hr>

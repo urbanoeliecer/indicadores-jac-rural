@@ -1,139 +1,136 @@
-const RUTA_CONTROLADOR = "../back/cntInter.php";
-document.addEventListener("DOMContentLoaded", function() {
-    // Esperamos que el DOM esté completamente cargado antes de ejecutar el código
+document.addEventListener("DOMContentLoaded", function () {
 
-    // Referencias a los elementos del formulario
+    const RUTA_CONTROLADOR = "../back/cntInter.php";
+
     const form = document.getElementById("formFiltros");
+    const selDepartamento = document.getElementById("departamento");
+    const selMunicipio = document.getElementById("municipio");
+    const selJunta = document.getElementById("junta");
     const fechaInicioInput = document.getElementById("fecha_inicio");
     const fechaFinInput = document.getElementById("fecha_fin");
 
-    // Si los inputs no existen, no ejecutamos la lógica
-    if (!fechaInicioInput || !fechaFinInput) {
-        console.error("Error: Los campos de fecha no se encuentran en el DOM");
-        return; // Evitamos continuar si no existen los campos
-    }
-
-    // Cargar departamentos
+    /* =========================
+       CARGAR DEPARTAMENTOS
+    ========================= */
     function cargarDepartamentos() {
         fetch(`${RUTA_CONTROLADOR}?accion=departamentos`)
-            .then(response => response.json())
+            .then(r => r.json())
             .then(data => {
-                const sel = document.getElementById("departamento");
-                sel.innerHTML = `<option value="">Seleccione departamento</option>`;
-                data.forEach(dep => {
-                    sel.innerHTML += `<option value="${dep.iddepartamento}">${dep.nombre}</option>`;
+                selDepartamento.innerHTML =
+                    `<option value="">Seleccione departamento</option>`;
+                data.forEach(d => {
+                    selDepartamento.innerHTML +=
+                        `<option value="${d.iddepartamento}">${d.nombre}</option>`;
                 });
             })
-            .catch(error => console.error("Error cargando departamentos:", error));
+            .catch(err => console.error("Error cargando departamentos", err));
     }
 
-    // Cargar municipios
+    /* =========================
+       CARGAR MUNICIPIOS
+    ========================= */
     function cargarMunicipios() {
-        const idDepartamento = document.getElementById("departamento").value;
+        const idDepartamento = selDepartamento.value;
         if (!idDepartamento) return;
 
         fetch(`${RUTA_CONTROLADOR}?accion=municipios&iddepartamento=${idDepartamento}`)
-            .then(response => response.json())
+            .then(r => r.json())
             .then(data => {
-                const sel = document.getElementById("municipio");
-                sel.innerHTML = `<option value="">Seleccione municipio</option>`;
-                data.forEach(mun => {
-                    sel.innerHTML += `<option value="${mun.idmunicipio}">${mun.nombre}</option>`;
-                });
-
-                // Limpia juntas
-                document.getElementById("junta").innerHTML =
+                selMunicipio.innerHTML =
+                    `<option value="">Seleccione municipio</option>`;
+                selJunta.innerHTML =
                     `<option value="">Seleccione junta</option>`;
+
+                data.forEach(m => {
+                    selMunicipio.innerHTML +=
+                        `<option value="${m.idmunicipio}">${m.nombre}</option>`;
+                });
             })
-            .catch(error => console.error("Error cargando municipios:", error));
+            .catch(err => console.error("Error cargando municipios", err));
     }
 
-    // Cargar juntas
+    /* =========================
+       CARGAR JUNTAS
+    ========================= */
     function cargarJuntas() {
-        const idMunicipio = document.getElementById("municipio").value;
+        const idMunicipio = selMunicipio.value;
         if (!idMunicipio) return;
 
         fetch(`${RUTA_CONTROLADOR}?accion=juntas&idmunicipio=${idMunicipio}`)
-            .then(response => response.json())
+            .then(r => r.json())
             .then(data => {
-                const sel = document.getElementById("junta");
-                sel.innerHTML = `<option value="">Seleccione junta</option>`;
+                selJunta.innerHTML =
+                    `<option value="">Seleccione junta</option>`;
                 data.forEach(j => {
-                    sel.innerHTML += `<option value="${j.idjunta}">${j.nombre}</option>`;
+                    selJunta.innerHTML +=
+                        `<option value="${j.idjunta}">${j.nombre}</option>`;
                 });
             })
-            .catch(error => console.error("Error cargando juntas:", error));
+            .catch(err => console.error("Error cargando juntas", err));
     }
 
-    // Al enviar el formulario
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();  // Evita que el formulario se envíe y recargue la página
+    /* =========================
+       CONSULTAR PROYECTOS
+    ========================= */
+    function consultarProyectos(e) {
+        e.preventDefault();
 
-        const fechaInicio = fechaInicioInput.value;
-        const fechaFin = fechaFinInput.value;
+        let fechaInicio = fechaInicioInput.value;
+        let fechaFin = fechaFinInput.value;
 
-        // Si no se seleccionan fechas, usamos valores por defecto
         if (!fechaInicio || !fechaFin) {
-            console.log("Fechas no seleccionadas, usando fechas por defecto.");
+            fechaInicio = "0000-00-00";
+            fechaFin = "9999-12-31";
         }
 
-        const data = new FormData(form);
+        const data = new FormData();
+        data.append("fecha_inicio", fechaInicio);
+        data.append("fecha_fin", fechaFin);
+        data.append("iddepartamento", selDepartamento.value);
+        data.append("idmunicipio", selMunicipio.value);
+        data.append("idjunta", selJunta.value);
 
         fetch(`${RUTA_CONTROLADOR}?accion=consultar`, {
             method: "POST",
             body: data
         })
-        .then(response => response.json())
+        .then(r => r.json())
         .then(resp => {
-            // Verifica que los datos estén disponibles
+
+            /* ===== RESUMEN ===== */
             if (!resp.resumen) {
-                alert("No se encontró información para el período seleccionado.");
+                alert("No hay información");
                 return;
             }
 
-            /* ===== RESUMEN ===== */
             const r = resp.resumen;
-
-            let htmlResumen = `
+            document.getElementById("resumen").innerHTML = `
                 <h4>Resumen</h4>
-                <p><b>Nombre:</b> ${r.nombre ?? 'N/A'}</p>
-                <p><b>Total proyectos:</b> ${r.total_proyectos ?? 0}</p>
+                <p><b>Total proyectos:</b> ${r.total_proyectos}</p>
                 <p><b>Total monto:</b> ${r.total_monto ?? 0}</p>
                 <p><b>Total beneficiarios:</b> ${r.total_beneficiarios ?? 0}</p>
             `;
 
-            if (r.total_municipios !== undefined) {
-                htmlResumen += `<p><b>Total municipios:</b> ${r.total_municipios}</p>`;
-            }
-
-            if (r.total_juntas !== undefined) {
-                htmlResumen += `<p><b>Total juntas:</b> ${r.total_juntas}</p>`;
-            }
-
-            htmlResumen += `<p><b>Total representantes:</b> ${r.total_representantes ?? 0}</p>`;
-
-            // Muestra el resumen
-            document.getElementById("resumen").innerHTML = htmlResumen;
-
             /* ===== DETALLE ===== */
-            let htmlDetalle = `
-                <table border="1" width="100%">
-                    <tr>
-                        <th>Proyecto</th>
-                        <th>Monto</th>
-                        <th>Beneficiarios</th>
-                        <th>Junta</th>
-                        <th>Municipio</th>
-                        <th>Departamento</th>
-                        <th>Representante</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha fin</th>
-                    </tr>
-            `;
+            if (!resp.detalle || resp.detalle.length === 0) {
+                document.getElementById("detalle").innerHTML =
+                    "<p>No hay detalle de proyectos</p>";
+                return;
+            }
 
-            // Recorre los detalles y los muestra en la tabla
+            let html = `
+                <table border="1" width="100%">
+                <tr>
+                    <th>Proyecto</th>
+                    <th>Monto</th>
+                    <th>Beneficiarios</th>
+                    <th>Junta</th>
+                    <th>Municipio</th>
+                    <th>Departamento</th>
+                </tr>`;
+
             resp.detalle.forEach(d => {
-                htmlDetalle += `
+                html += `
                     <tr>
                         <td>${d.proyecto}</td>
                         <td>${d.monto}</td>
@@ -141,26 +138,22 @@ document.addEventListener("DOMContentLoaded", function() {
                         <td>${d.junta}</td>
                         <td>${d.municipio}</td>
                         <td>${d.departamento}</td>
-                        <td>${d.representante ?? ''}</td>
-                        <td>${d.fechainicio}</td>
-                        <td>${d.fechafinal}</td>
-                    </tr>
-                `;
+                    </tr>`;
             });
 
-            htmlDetalle += `</table>`;
-            document.getElementById("detalle").innerHTML = htmlDetalle;
+            html += "</table>";
+            document.getElementById("detalle").innerHTML = html;
         })
-        .catch(error => console.error("Error en la consulta:", error));
-    });
+        .catch(err => console.error("Error en consulta", err));
+    }
 
-    // Carga los datos iniciales
+    /* =========================
+       EVENTOS
+    ========================= */
     cargarDepartamentos();
+    selDepartamento.addEventListener("change", cargarMunicipios);
+    selMunicipio.addEventListener("change", cargarJuntas);
+    form.addEventListener("submit", consultarProyectos);
 
-    // Evento de cambio para cargar municipios al seleccionar un departamento
-    document.getElementById("departamento").addEventListener("change", cargarMunicipios);
-
-    // Evento de cambio para cargar juntas al seleccionar un municipio
-    document.getElementById("municipio").addEventListener("change", cargarJuntas);
 });
 
