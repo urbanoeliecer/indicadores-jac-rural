@@ -33,5 +33,5 @@ JOIN departamentos d
     ON m.iddepartamento = d.iddepartamento
 LEFT JOIN representantes r
     ON r.idjunta = j.idjunta
-LEFT JOIN usuarios u
+LEFT JOIN tusuarios u
     ON u.idusuario = r.idusuario;

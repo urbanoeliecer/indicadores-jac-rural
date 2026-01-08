@@ -17,5 +17,20 @@ try {
     echo "Error de conexión: " . $e->getMessage();
     exit;
 }
-?>
+
+/* Pagina para definir la funcion de conexion
+function Conectarse(){
+    if (!($link = mysqli_connect("localhost","root",""))){
+        echo "Error conectando a la base de datos.";
+        exit(); }
+    if (!mysqli_select_db($link,"bdsara")){
+        echo "Error seleccionando la base de datos.";
+        exit();  
+    }
+    return $link;  
+}
+$link=Conectarse();
+ * */
+
+
 

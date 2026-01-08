@@ -1,6 +1,10 @@
+<?php session_start(); ?>
+<html><head><meta><title>InvBasico</title></head><body>
 <?php
-//session_start();
-?>
+if (isset($_SESSION["usuario"])) {
+    echo 'Estas como: '.$_SESSION["usuario"];
+    ?>
+    &nbsp;<a href="logOut.php">Cerrar sesión</a>
 
 <nav>
   <ul>
@@ -30,5 +34,23 @@
       </li>
     <?php //endif; ?>
   </ul>
-</nav>
+</nav>    
+    
 
+    <div class="container">
+        <div class="col-md-3"><?php
+        if ($_SESSION["rol"] == 1) {
+            echo '<a href="usuarios.php">Gestión de Usuarios</a><br>';
+            echo '<a href="productos.php">Gestión de Productos</a><br>';
+        }
+        ?>
+            <a href="compras.php">Compras</a><br>
+        </div>
+    </div><?php
+}
+else {
+    echo 'La sesión está cerrada, debe volver a iniciarla<br>';
+    echo '<a href="index.php">Iniciar sesión</a>';
+}
+?>
+</body></html>

@@ -12,6 +12,12 @@ header('Content-Type: application/json');
    COMBOS
 ========================= */
 
+
+//session_start();
+//if (isset($_SESSION["usuario"]))
+{
+
+
 if ($accion === 'departamentos') {
     $sql = "SELECT iddepartamento, nombre FROM departamentos ORDER BY nombre";
     $stmt = $pdo->query($sql);
@@ -151,3 +157,11 @@ if ($accion === 'consultar') {
 echo json_encode([
     "error" => "Acción no válida"
 ]);
+}
+//else 
+{
+//    echo 'La sesión está cerrada, debe volver a iniciarla<br>';
+//    echo '<a href="index.php">Iniciar sesión</a>';
+} 
+?>
+</body></html>
