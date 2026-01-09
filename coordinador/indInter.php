@@ -1,8 +1,7 @@
+<a href="../principal.php">Principal</a></li>
 <?php
 $rol = $_GET['rol'] ?? 0;
-echo "Consulta SQL: " . $sqlResumen . "<br>";
 ?>
-
 <html lang="es">
 <head>
     <meta charset="utf-8">
@@ -11,9 +10,7 @@ echo "Consulta SQL: " . $sqlResumen . "<br>";
     <script src="../back/cntInter.js"></script>
 </head>
 <body>
-
 <!-- Formulario de filtros -->
-
 <form id="formFiltros">
     <input type="hidden" name="rol" value="<?= $rol ?>">
 
@@ -22,27 +19,18 @@ echo "Consulta SQL: " . $sqlResumen . "<br>";
 
     <label for="fecha_fin">Fecha fin</label>
     <input type="date" id="fecha_fin" name="fecha_fin">
-
     <br><br>
-
     <!-- Combos para Departamento, Municipio y Junta -->
     <select name="iddepartamento" id="departamento" onchange="cargarMunicipios()"></select>
     <select name="idmunicipio" id="municipio" onchange="cargarJuntas()"></select>
     <select name="idjunta" id="junta"></select>
-
     <br><br>
-
-    <!-- Botón para enviar la consulta -->
-    <button type="button" id="btn" onclick="consultarProyectos(event)">Enviar</button>
     <button type="submit" id="consultarBtn">Consultar</button>
 </form>
-
 <hr>
-
 <!-- Resumen y Detalles de los Proyectos -->
 <div id="resumen"></div>
 <div id="detalle"></div>
-
 <script>
     // Cargar departamentos al cargar la página
 

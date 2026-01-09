@@ -1,20 +1,4 @@
-SELECT *
-FROM viewproyectosxjunta
-WHERE beneficiarios = (
-    SELECT MAX(beneficiarios) FROM viewproyectosxjunta
-);	
-
-SELECT *
-FROM proyectos
-WHERE beneficiarios = (
-    SELECT MAX(beneficiarios) FROM proyectos
-);
-
-SELECT *
-FROM proyectos
-ORDER BY beneficiarios DESC
-LIMIT 1;
-
+<a href="../principal.php">Principal</a></li>
 <?php
 
 //phpinfo();

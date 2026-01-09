@@ -1,4 +1,5 @@
-<?php
+<a href="../principal.php">Principal</a></li>
+    <?php
 // === consolidado.php ===
 // modo: departamento / municipio / junta
 $servername = "localhost";
