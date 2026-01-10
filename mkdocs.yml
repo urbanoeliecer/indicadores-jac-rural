@@ -12,7 +12,7 @@ nav:
     - Ind Municipal: infMun.md
     - Ind Nacional: infNac.md
   - Admin:
-    - Inf. Consultas: admin/infConsultas.md
+    - Inf. Actividades: admin/infConsultas.md
     - Inf. Partic-Comp: admin/infPartComp.md
     - Inf. Partic-Ind: admin/infPartInd.md
     - Inf. Proyectos: admin/infProy.md

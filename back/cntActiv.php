@@ -1,4 +1,7 @@
 <?php
+
+//cambiar todo lo que diga cnt por vst
+
 function mostrarTablaActividades($datos) {
 ?>
 <table border="1" cellpadding="5">
