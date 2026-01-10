@@ -18,7 +18,7 @@ try {
     exit;
 }
 
-/* Pagina para definir la funcion de conexion
+// Pagina para definir la funcion de conexion
 function Conectarse(){
     if (!($link = mysqli_connect("localhost","root",""))){
         echo "Error conectando a la base de datos.";
@@ -30,7 +30,6 @@ function Conectarse(){
     return $link;  
 }
 $link=Conectarse();
- * */
 
 
 

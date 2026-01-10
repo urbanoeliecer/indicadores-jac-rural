@@ -25,7 +25,7 @@ $rol = $_GET['rol'] ?? 0;
     <select name="idmunicipio" id="municipio" onchange="cargarJuntas()"></select>
     <select name="idjunta" id="junta"></select>
     <br><br>
-    <button type="submit" id="consultarBtn">Consultar</button>
+    <button type="submit" id="consultar">Consultar</button>
 </form>
 <hr>
 <!-- Resumen y Detalles de los Proyectos -->

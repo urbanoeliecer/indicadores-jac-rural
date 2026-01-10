@@ -14,7 +14,7 @@ if (isset($_SESSION["usuario"])) {
       <li>
         Admin
         <ul>
-          <li><a href="admin/infConsultas.php">Inf. Consultas</a></li>
+          <li><a href="admin/infActividades.php">Inf. Consultas</a></li>
           <li><a href="admin/infListUbic.php">Inf. Ubicaciones</a></li>
           <li><a href="admin/infPartComp.php">Inf. Comparativo Part.</a></li>
           <li><a href="admin/infPartInd.php">Inf. Individual Part.</a></li>
