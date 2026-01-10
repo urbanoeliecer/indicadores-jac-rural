@@ -1,3 +1,10 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Informe de Ubicaciones</title>
+<link rel="stylesheet" href="../back/estilos.css">
+</head>
+<body>
 <a href="../principal.php">Principal</a></li>
 <br>
 <?php

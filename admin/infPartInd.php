@@ -1,4 +1,10 @@
-Generar Informe de Participación
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Informe de Participación</title>
+<link rel="stylesheet" href="../back/estilos.css">
+</head>
+<body>
 <br>
 <a href="../principal.php">Principal</a></li>
 <br>

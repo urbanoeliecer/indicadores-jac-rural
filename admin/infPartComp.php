@@ -1,3 +1,10 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Informe Part comunitaria</title>
+<link rel="stylesheet" href="../back/estilos.css">
+</head>
+<body><a href="../principal.php">Principal</a></li>
 <?php
 // Grafica, hazla lleva los valores a un máximo de 1 proporcional al máximo que encuentres 
 $data = [

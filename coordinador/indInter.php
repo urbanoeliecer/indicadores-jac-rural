@@ -1,4 +1,4 @@
-<a href="../principal.php">Principal</a></li>
+
 <?php
 $rol = $_GET['rol'] ?? 0;
 ?>
@@ -6,10 +6,11 @@ $rol = $_GET['rol'] ?? 0;
 <head>
     <meta charset="utf-8">
     <title>Intervenciones</title>
-    
-    <script src="../back/cntInter.js"></script>
+    <link rel="stylesheet" href="../back/estilos.css">
+    <script src="../back/vstInter.js"></script>
 </head>
 <body>
+    <a href="../principal.php">Principal</a>
 <!-- Formulario de filtros -->
 <form id="formFiltros">
     <input type="hidden" name="rol" value="<?= $rol ?>">

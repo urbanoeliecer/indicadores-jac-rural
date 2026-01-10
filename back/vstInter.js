@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const RUTA_CONTROLADOR = "../back/cntInter.php";
+    const RUTA_CONTROLADOR = "../back/vstInter.php";
 
     const form = document.getElementById("formFiltros");
     const selDepartamento = document.getElementById("departamento");

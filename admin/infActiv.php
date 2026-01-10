@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Informe mensual de actividades</title>
-<style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-</style>
+<meta charset="UTF-8">
+<title>Informe mensual de actividades</title>
+<link rel="stylesheet" href="../back/estilos.css">
 </head>
 <body>
+    <a href="../principal.php">Principal</a></li>
 <h2>Informe consolidado mensual de actividades</h2>
 <form method="post">
     <label>Fecha inicio:</label>
@@ -39,7 +36,7 @@ $idDepartamento = $_POST['iddepartamento'] ?? null;
 $datos = $model->obtenerInforme($fechaInicio, $fechaFin, $idDepartamento);
 
 /* ===== PASAR A LA VISTA ===== */
-require_once "../back/cntActiv.php";
+require_once "../back/vstActiv.php";
 ?>
 </body>
 </html>

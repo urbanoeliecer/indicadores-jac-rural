@@ -1,4 +1,11 @@
-<a href="../principal.php">Principal</a></li>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Informe Part comunitaria</title>
+<link rel="stylesheet" href="../back/estilos.css">
+</head>
+<body>
+    <a href="../principal.php">Principal</a></li>
     <?php
 // === consolidado.php ===
 // modo: departamento / municipio / junta

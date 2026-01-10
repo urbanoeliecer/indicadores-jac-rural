@@ -1,30 +1,13 @@
-<a href="../principal.php">Principal</a></li>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Informe Part comunitaria</title>
+<link rel="stylesheet" href="../back/estilos.css">
+</head>
+<body>
+<a href="../principal.php">Principal</a>
 <?php
-
-//phpinfo();
-echo "Antes<br>";
-
-$conn = new mysqli(
-    "127.0.0.1",
-    "root",
-    "",
-    "bdsara",
-    3306
-);
-
-echo "Después<br>";
-//exit();
-$con = new mysqli("localhost", "root", "", "bdsara",3306);
-
-if ($con->connect_error) {
-    die("Error: " . $con->connect_error);
-}
-
-echo "Conexión OK";
-//exit();
-// ===========================
 // 1. Conexión a MySQL
-// ===========================
 $servername = "127.0.0.1";
 $username = "root";
 $password = "";
@@ -33,10 +16,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Error de conexión: " . $conn->connect_error);
 }
-
-// ===========================
 // 2. Captura de parámetros
-// ===========================
 $municipio = $_GET['municipio'] ?? '';
 $junta = $_GET['junta'] ?? '';
 $fecha_inicio = $_GET['fechainicio'] ?? '';
@@ -45,7 +25,7 @@ $fecha_fin = $_GET['fechafin'] ?? '';
 $order = $_GET['order'] ?? 'junta';
 $allowed = ['junta','monto','beneficiarios','fechainicio'];
 if (!in_array($order,$allowed)) { $order = 'junta'; }
-print $order;
+print '<br><br>Orden: '.$order;
 
 // paginación
 $limite = 10;
@@ -87,44 +67,12 @@ $sql = "SELECT *
 $sql .= " ORDER BY $order desc";
 $sql .= " LIMIT $limite OFFSET $offset";
 
-print '<br>'.$sql.'<br>';
+//print '<br>'.$sql.'<br>';
 
 $result = $conn->query($sql);
 
 
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Búsqueda de Proyectos</title>
-
-    <style>
-        body { font-family: Arial; padding: 20px; }
-        form { margin-bottom: 20px; padding: 10px; background: #f7f7f7; border-radius: 6px; }
-        label { display: inline-block; width: 150px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { border: 1px solid #ccc; padding: 8px; }
-        th { background: #eee; }
-        .paginacion { margin-top: 20px; }
-        .paginacion a {
-            padding: 6px 12px;
-            margin: 0 4px;
-            background: #ddd;
-            text-decoration: none;
-            border-radius: 3px;
-        }
-        .paginacion span {
-            padding: 6px 12px;
-            margin: 0 4px;
-            background: #bbb;
-            border-radius: 3px;
-        }
-    </style>
-</head>
-<body>
-
 <h1>Proyectos por Junta de Acción Comunal</h1>
 
 <!-- =========================== -->
@@ -150,10 +98,10 @@ $result = $conn->query($sql);
 
     <br>
     <button type="submit">Buscar</button>
-<a href="proyectos.php?order=junta">Ordenar por Junta</a> |
-<a href="proyectos.php?order=monto">Ordenar por Monto</a> |
-<a href="proyectos.php?order=beneficiarios">Ordenar por Beneficiarios</a> |
-<a href="proyectos.php?order=fechainicio">Ordenar por Fecha Inicio</a>
+<a href="InfProy.php?order=junta">Ordenar por Junta</a> |
+<a href="InfProy.php?order=monto">Ordenar por Monto</a> |
+<a href="InfProy.php?order=beneficiarios">Ordenar por Beneficiarios</a> |
+<a href="InfProy.php?order=fechainicio">Ordenar por Fecha Inicio</a>
 </form>
 
 <!-- =========================== -->
