@@ -2,6 +2,11 @@ site_name: SaraII - Indicadores Rurales
 theme:
   name: material
   language: es
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid  
 nav:
   - Inicio: index.md
   - Revisión de Sesión: revSesion.md
