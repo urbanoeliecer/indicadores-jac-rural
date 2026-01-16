@@ -7,9 +7,6 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid 
-extra_javascript:
-  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
-  - javascripts/mermaid.js
 nav:
   - Inicio: index.md
   - Revisión de Sesión: revSesion.md
