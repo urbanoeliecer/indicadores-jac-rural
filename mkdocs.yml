@@ -12,10 +12,8 @@ nav:
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
   - Coordinador:
-    - Ind Consolidada: coordinador/infCons.md
-    - Ind Departamental: infDep.md
-    - Ind Municipal: infMun.md
-    - Ind Nacional: infNac.md
+    - Ind Consolidada: coordinador/indCons.md
+    - Ind Intrvención: coordinador/indInter.md
   - Admin:
     - Inf. Actividades: admin/infConsultas.md
     - Inf. Partic-Comp: admin/infPartComp.md
@@ -23,12 +21,13 @@ nav:
     - Inf. Proyectos: admin/infProy.md
     - Inf. Ubicaciones: admin/infListUbic.md
     - Inf. Resumen: admin/infResReg.md
-  - Backend:
-    - Conexión: conect.md
-    - Funciones: funciones.md
-  - Tecnico:
-    - Base de Datos: tecnico/bd.md
-    - Bd Estructura: tecnico/bdEst.md
-    - Requerimientos: tecnico/req.md
-    - Roles: tecnico/roles.md
+  - Back:
+    - Conexión: back/conexion.md
+    - Estilos: back/estilos.md
+    - Funciones: back/funciones.md
+  - Definición:
+    - Base de Datos: def/bd.md
+    - Bd Estructura: def/bdEst.md
+    - Requerimientos: def/req.md
+    - Roles: def/roles.md
 
