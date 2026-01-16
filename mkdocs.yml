@@ -21,6 +21,7 @@ nav:
   - Backend:
     - Conexión: conect.md
     - Funciones: funciones.md
+    - Bd: bd.md
   - Tecnico:
     - Base de Datos: tecnico/bd.md
     - Requerimientos: tecnico/req.md
