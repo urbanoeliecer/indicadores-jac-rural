@@ -21,9 +21,9 @@ nav:
   - Backend:
     - Conexión: conect.md
     - Funciones: funciones.md
-    - Bd: bd.md
   - Tecnico:
     - Base de Datos: tecnico/bd.md
+    - Bd Estructura: tecnico/bdEst.md
     - Requerimientos: tecnico/req.md
     - Roles: tecnico/roles.md
 
