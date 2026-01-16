@@ -1,12 +1,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Informe Part comunitaria</title>
+    <title>Ind. Actividades</title>
 <link rel="stylesheet" href="../back/estilos.css">
 </head>
 <body>
-    <a href="../principal.php">Principal</a></li>
-    <?php
+<a href="../principal.php">Principal</a></li>
+<h2>Indicador de Actividades</h2>
+<?php
 // === consolidado.php ===
 // modo: departamento / municipio / junta
 $servername = "localhost";
@@ -174,21 +175,6 @@ $totalRows = $conn->query($sqlTotal)->fetch_assoc()['total'];
 $totalPaginas = ceil($totalRows / $porPagina);
 
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Consolidado de Proyectos</title>
-    <style>
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #999; padding: 6px; }
-        th { background: #eee; }
-    </style>
-</head>
-<body>
-<h2>Consolidado de Proyectos</h2>
-
 <form method="GET">
     <div><label>Fecha inicio:</label>
     <input type="date" name="fecha_inicio" value="<?= $fechaInicio ?>">

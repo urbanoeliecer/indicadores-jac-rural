@@ -25,10 +25,10 @@ if (isset($_SESSION["usuario"])) {
 
     <?php //if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'coordinador'): ?>
       <li>
-        Secretario
+        Coordinador
         <ul>
+          <li><a href="coordinador/indActiv.php">Informe de Actividades</a></li>
           <li><a href="coordinador/indInter.php">Informe de Intervención</a></li>
-          <li><a href="coordinador/indCons.php">Informe de Consultas</a></li>
         </ul>
       </li>
     <?php //endif; ?>

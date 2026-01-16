@@ -12,10 +12,10 @@ nav:
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
   - Coordinador:
-    - Ind Consolidada: coordinador/indCons.md
+    - Ind Consolidada: coordinador/indActiv.md
     - Ind Intrvención: coordinador/indInter.md
   - Admin:
-    - Inf. Actividades: admin/infConsultas.md
+    - Inf. Actividades: admin/infConsActiv.md
     - Inf. Partic-Comp: admin/infPartComp.md
     - Inf. Partic-Ind: admin/infPartInd.md
     - Inf. Proyectos: admin/infProy.md

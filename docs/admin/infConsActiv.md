@@ -10,35 +10,32 @@ require vstActiv.php
    ↓
 mostrarTablaActividades($datos)
 
-
           user
-             │
-┌────────────┴───────────────┐
-│ <<Controller>>             │
-│ infActiv                   │
+            │
+┌────────────────────────────┐
+│ <<Controller>>         │
+│ infActiv               │
 ├────────────────────────────┤
-│ + procesarSolicitud()      │
-└────────────▲───────────────┘
-             │
- ┌────────────────────────────┐
-│ <<Model>>                  │
-│ ActividadModel             │
-├────────────────────────────┤
-│ - db : PDO                 │
-├────────────────────────────┤
-│ + obtenerInforme(...)      │
-└────────────▲───────────────┘           
-             │
-┌────────────┴───────────────┐
-│ <<View>>                   │
-│ vstActiv                   │
-├────────────────────────────┤
-│ + mostrarTablaActividades()│
+│ + procesarSolicitud()  │
 └────────────────────────────┘
-|
-|
-usuario
-
+            │
+┌────────────────────────────┐
+│ <<Model>>              │
+│ ActividadModel         │
+├────────────────────────────┤
+│ - db : PDO             │
+├────────────────────────────┤
+│ + obtenerInforme(...)  │
+└────────────────────────────┘           
+            │
+┌────────────────────────────┐
+│ <<View>>               │
+│ vstActiv               │
+├────────────────────────────┤
+│ + mostrarActividades() │
+└────────────────────────────┘
+            |
+          usuario
 
 El usuario llega al controlador;
 el controlador dialoga con el modelo;

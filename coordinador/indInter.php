@@ -10,7 +10,8 @@ $rol = $_GET['rol'] ?? 0;
     <script src="../back/vstInter.js"></script>
 </head>
 <body>
-    <a href="../principal.php">Principal</a>
+<a href="../principal.php">Principal</a><br>
+<h2>Intervenciones</h2>
 <!-- Formulario de filtros -->
 <form id="formFiltros">
     <input type="hidden" name="rol" value="<?= $rol ?>">

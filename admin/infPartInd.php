@@ -1,13 +1,13 @@
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Generar Informe de Participación</title>
+<meta charset="UTF-8">
+<title>Informe de Participación</title>
 <link rel="stylesheet" href="../back/estilos.css">
 </head>
 <body>
 <br>
 <a href="../principal.php">Principal</a></li>
-<br>
+<h2>Informe de Participación</h2>
 <?php
 require '../back/funciones.php';
 

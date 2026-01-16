@@ -4,7 +4,8 @@
     <title>Informe Part comunitaria</title>
 <link rel="stylesheet" href="../back/estilos.css">
 </head>
-<body><a href="../principal.php">Principal</a></li>
+<body><a href="../principal.php">Principal</a>
+<h2>Informe de Participación</h2>
 <?php
 // Grafica, hazla lleva los valores a un máximo de 1 proporcional al máximo que encuentres 
 $data = [
