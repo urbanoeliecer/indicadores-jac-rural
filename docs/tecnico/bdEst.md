@@ -5,8 +5,7 @@
 La Figura 1 representa el modelo de dominio del sistema SARA, mostrando
 las entidades principales y sus relaciones.
 
-```mermaid
-classDiagram
+```mermaid classDiagram
     Departamento {
         iddepartamento
         depNombre
