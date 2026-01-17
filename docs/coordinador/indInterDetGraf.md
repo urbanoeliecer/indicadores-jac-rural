@@ -1,4 +1,4 @@
-# Información de intervención consolidadda
+# Información de intervención detallado
 
 En esta sección se detallan los indicadores de intervención en infraestructura 
 apoyados por la Alcaldía y ejecutados por las JAC.
