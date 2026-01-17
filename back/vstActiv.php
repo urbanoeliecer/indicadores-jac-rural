@@ -7,18 +7,18 @@ function mostrarTablaActividades($datos) {
 <table border="1" cellpadding="5">
 <tr>
     <th>#</th>
-    <th>ID Proyecto</th>
+    <th>Id</th>
     <th>Proyecto</th>
-    <th>Beneficiarios</th>
+    <th>Benef.</th>
     <th>Departamento</th>
     <th>Municipio</th>
     <th>Junta</th>
     <th>Mes</th>
-    <th>Presupuesto Proyecto</th>
-    <th>Total Presupuesto Actividades</th>
-    <th>Total Personas</th>
-    <th>Total Horas</th>
-    <th># Actividades</th>
+    <th>Pres.</th>
+    <th>Pres. Ejec.</th>
+    <th>Benef. Prm.</th>
+    <th>Cant. Horas</th>
+    <th>Cant. Activ.</th>
 </tr>
 
 <?php
@@ -37,7 +37,13 @@ if (!empty($datos)):
     <td><?= $row['mes'] ?></td>
     <td><?= $row['presupuesto_proyecto'] ?></td>
     <td><?= $row['total_presupuesto_actividades'] ?></td>
-    <td><?= $row['total_personas'] ?></td>
+    <?php
+    echo '<td>' . (
+    $row['total_actividades'] > 0
+        ? round($row['total_personas'] / $row['total_actividades'], 1)
+        : 0
+    ) . '</td>';
+    ?>
     <td><?= $row['total_horas'] ?></td>
     <td><?= $row['total_actividades'] ?></td>
 </tr>

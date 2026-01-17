@@ -13,14 +13,14 @@ nav:
   - Panel Principal: principal.md
   - Coordinador:
     - Ind Consolidada: coordinador/indActiv.md
-    - Ind Intrvención: coordinador/indInter.md
+    - Ind Intervención: coordinador/indInter.md
   - Admin:
-    - Inf. Actividades: admin/infConsActiv.md
-    - Inf. Partic-Comp: admin/infPartComp.md
-    - Inf. Partic-Ind: admin/infPartInd.md
-    - Inf. Proyectos: admin/infProy.md
-    - Inf. Ubicaciones: admin/infListUbic.md
+    - Inf. Actividades: admin/infActivMes.md
+    - Inf. Partic-Comp: admin/infGrafPart.md
+    - Inf. Partic: admin/infPartic.md
+    - Inf. Ubicaciones: admin/infGrafUbic.md
     - Inf. Resumen: admin/infResReg.md
+    - Inf. Proyectos: admin/infProy.md
   - Back:
     - Conexión: back/conexion.md
     - Estilos: back/estilos.md

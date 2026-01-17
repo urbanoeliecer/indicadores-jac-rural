@@ -7,7 +7,7 @@
 </head>
 <body>
     <a href="../principal.php">Principal</a></li>
-<h2>Informe consolidado mensual de actividades</h2>
+<h2>Informe mensual de actividades</h2>
 <form method="post">
     <label>Fecha inicio:</label>
     <input type="date" name="fecha_inicio">

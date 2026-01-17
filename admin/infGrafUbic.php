@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="../back/estilos.css">
 </head>
 <body>
-<a href="../principal.php">Principal</a></li>
-<br>
+<a href="../principal.php">Principal</a>
+<h2>Inf. Graf. Ubicaciones</h2>
 <?php
 
 $data = [

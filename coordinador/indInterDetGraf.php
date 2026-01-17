@@ -1,7 +1,7 @@
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Ind. Actividades</title>
+<meta charset="UTF-8">
+<title>Ind. Actividades</title>
 <link rel="stylesheet" href="../back/estilos.css">
 </head>
 <body>
@@ -268,12 +268,12 @@ $resultado->data_seek(0);
                 <td><?= $row['municipio'] ?></td>
                 <td><?= $row['vereda'] ?></td>
             <?php endif;
-$a0 = $maxProy>0? intval(($row['total_proyectos']/$maxProy)*300):0;	
-$a1 = $maxMon>0? intval(($row['monto']/$maxMon)*300):0;    
-$a2 = $maxBen>0? intval(($row['beneficiarios']/$maxBen)*300):0;
-$img0 = '<img src="barra.png" height="20" width="'.$a0.'">'; 
-$img1 = '<img src="barra.png" height="20" width="'.$a1.'">';
-$img2 = '<img src="barra.png" height="20" width="'.$a2.'">';
+$a0 = $maxProy>0? intval(($row['total_proyectos']/$maxProy)*100):0;	
+$a1 = $maxMon>0? intval(($row['monto']/$maxMon)*100):0;    
+$a2 = $maxBen>0? intval(($row['beneficiarios']/$maxBen)*100):0;
+$img0 = '<img src="../img/barra.png" height="20" width="'.$a0.'">'; 
+$img1 = '<img src="../img/barra.png" height="20" width="'.$a1.'">';
+$img2 = '<img src="../img/barra.png" height="20" width="'.$a2.'">';
 	    ?>
             <td><?= $row['total_proyectos'] ?></td>
 	    <td><?= $img0; ?></td>

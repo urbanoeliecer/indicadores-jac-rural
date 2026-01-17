@@ -1,5 +1,7 @@
 
 # Markdown Cheat Sheet (Example File)
+MVC
+
 Muestra los ingresos de cada usuario al sistema, incluido el admin
 
 infActiv.php   (controlador)

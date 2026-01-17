@@ -14,11 +14,11 @@ if (isset($_SESSION["usuario"])) {
       <li>
         Admin
         <ul>
-          <li><a href="admin/infActiv.php">Inf. Actividades</a></li>
-          <li><a href="admin/infListUbic.php">Inf. Ubicaciones</a></li>
-          <li><a href="admin/infPartComp.php">Inf. Comparativo Part.</a></li>
-          <li><a href="admin/infPartInd.php">Inf. Individual Part.</a></li>
-          <li><a href="admin/infProy.php">Inf. de Proyectos</a></li>
+          <li><a href="admin/infAgMesGrafActivRes.php">Inf. Mensual Resum. de Actividades (G)</a></li>
+          <li><a href="admin/infAgMesTabActivConsMVC.php">Inf. Mensual Det. de Actividades (T)</a></li>
+          <li><a href="admin/infGrafUbic.php">Inf. Graf. Ubicaciones</a></li>
+          <li><a href="admin/infGrafUso.php">Inf. Graf. de Uso</a></li>
+          <li><a href="admin/infTabProy.php">Inf. Tab. Proyectos</a></li>
         </ul>
       </li>
     <?php //endif; ?>
@@ -27,8 +27,8 @@ if (isset($_SESSION["usuario"])) {
       <li>
         Coordinador
         <ul>
-          <li><a href="coordinador/indActiv.php">Informe de Actividades</a></li>
-          <li><a href="coordinador/indInter.php">Informe de Intervención</a></li>
+          <li><a href="coordinador/indInterConsMVC.php">Ind. de Intervención Consolidado</a></li>
+          <li><a href="coordinador/indInterDetGraf.php">Ind. de Intervención Detalle</a></li>
         </ul>
       </li>
     <?php //endif; ?>

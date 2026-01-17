@@ -4,10 +4,10 @@ $rol = $_GET['rol'] ?? 0;
 ?>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
-    <title>Intervenciones</title>
-    <link rel="stylesheet" href="../back/estilos.css">
-    <script src="../back/vstInter.js"></script>
+<meta charset="utf-8">
+<title>Intervenciones</title>
+<link rel="stylesheet" href="../back/estilos.css">
+<script src="../back/vstInter.js"></script>
 </head>
 <body>
 <a href="../principal.php">Principal</a><br>

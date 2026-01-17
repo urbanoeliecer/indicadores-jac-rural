@@ -33,6 +33,7 @@ foreach ($data as $row):
 <tr>
     <td><?= $row[0] ?></td>
     <td><?= $row[1] ?></td>
+    <td><?= $row[2] ?></td>
     <td>
         <img src="../img/barra.png" height="15" width="<?= $width ?>">
         <?= round($normalized, 2) ?>
