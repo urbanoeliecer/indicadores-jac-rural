@@ -1,4 +1,4 @@
-# Informe de uso
+# Informe gráfico de Uso
 Muestra el caliendario
 1. El usuario escoge la matriz en un combo  
 2. 📅 La fecha aparece por defecto como hoy  

@@ -13,13 +13,13 @@ nav:
   - Panel Principal: principal.md
   - Coordinador:
     - Intervención Cons.: coordinador/indInterConsMVC.md
-    - Intervención det.: coordinador/indInterDetGraf.md
+    - Intervención Det.: coordinador/indInterDetGraf.md
   - Administrador:
-    - Graf. Resum. Actividades: admin/infAgrGrafActivRes.md
-    - Tab. Det. Actividades: admin/infAgrTabActivMVC.md
-    - Graf. Ubicaciones: admin/infGrafUbic.md
-    - Graf. de Uso: admin/infGrafUso.md
-    - Tab.Proyectos: admin/infTabProy.md
+    - Grf. Mes Actividades: admin/infAgrGrafActivRes.md
+    - Tab. Mes Actividades: admin/infAgrTabActivMVC.md
+    - Grf. Ubicaciones: admin/infGrafUbic.md
+    - Grf. Usos: admin/infGrafUso.md
+    - Tab. Proyectos: admin/infTabProy.md
   - Back:
     - Conexión: back/conexion.md
     - Estilos: back/estilos.md

@@ -1,5 +1,5 @@
 
-# Inf. Mensual Det. de Actividades (T)
+# Inf. tabular de Actividades agrupadas por mes 
 MVC
 
 Muestra los ingresos de cada usuario al sistema, incluido el admin
