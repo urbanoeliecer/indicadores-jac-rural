@@ -8,6 +8,7 @@ Presenta una tabla con el listado de actividades con:
 El informe tiene opciones de filtro como:
 
 Un ejemplo a mediados de enero de 2026 es presentada en la figura.
+
 Muestra los ingresos de cada usuario al sistema, incluido el admin
 
 infActiv.php   (controlador)
