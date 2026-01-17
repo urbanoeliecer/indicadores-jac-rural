@@ -3,6 +3,8 @@
 En esta sección se detallan los indicadores de intervención en infraestructura 
 apoyados por la Alcaldía y ejecutados por las JAC.
 
+Debe verse cu como se explresó en <b>roles</b>
+
 Presenta una tabla con el listado de proyectos por Departamento, Municipio, Vereda, cantidad de Proyectos, el monto, el total de beneficiarios, de los tres ultimos presenta graficas comparativa con el listado.
 
 El informe tiene opciones de filtro como:

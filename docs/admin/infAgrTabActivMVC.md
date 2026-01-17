@@ -11,6 +11,8 @@ Un ejemplo a mediados de enero de 2026 es presentada en la figura.
 
 Muestra los ingresos de cada usuario al sistema, incluido el admin
 
+# El modelo y la vista está en back y no tiene markdown debido a que seran explicadas aquí
+
 infActiv.php   (controlador)
    ↓
 $model->obtenerInforme()
