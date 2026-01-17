@@ -1,7 +1,13 @@
 
 # Inf. tabular de Actividades agrupadas por mes 
-MVC
 
+Es una de los dos paginas hechas en MVC
+
+Presenta una tabla con el listado de actividades con:
+#, Id, Proyecto, Benefiniciairos, Departamento, Municipio, Junta, Mes, Presupuesto asignado y ejecutados, beneficiarios promedios por mes, Cantidad de Horas dedicadas, Cantidad de actividades realziadas.
+El informe tiene opciones de filtro como:
+
+Un ejemplo a mediados de enero de 2026 es presentada en la figura.
 Muestra los ingresos de cada usuario al sistema, incluido el admin
 
 infActiv.php   (controlador)
