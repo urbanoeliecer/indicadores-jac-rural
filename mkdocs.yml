@@ -12,15 +12,15 @@ nav:
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
   - Coordinador:
-    - Ind Consolidada: coordinador/indActiv.md
-    - Ind Intervención: coordinador/indInter.md
-  - Admin:
-    - Inf. Actividades: admin/infActivMes.md
-    - Inf. Partic-Comp: admin/infGrafPart.md
+    - Ind Consolidada: coordinador/indInterConsMVC.md
+    - Ind Intervención: coordinador/indInterDetGraf.md
+  - Administrador:
+    - Inf. Mensual Resum. de Actividades (G): admin/infAgrGrafActivRes.md
+    - Inf. Mensual Det. de Actividades (T): admin/infAgrTabActivMVC.md
     - Inf. Partic: admin/infPartic.md
     - Inf. Ubicaciones: admin/infGrafUbic.md
-    - Inf. Resumen: admin/infResReg.md
-    - Inf. Proyectos: admin/infProy.md
+    - Inf. Graf. de Uso: admin/infGrafUso.md
+    - Inf. Proyectos: admin/infTabProy.md
   - Back:
     - Conexión: back/conexion.md
     - Estilos: back/estilos.md

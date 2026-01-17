@@ -1,5 +1,5 @@
-# Informe de Participación
-
+# Informe de uso
+Muestra el caliendario
 1. El usuario escoge la matriz en un combo  
 2. 📅 La fecha aparece por defecto como hoy  
 3. Al enviar, se genera el calendario  

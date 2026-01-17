@@ -7,7 +7,7 @@
 <body>
 <br>
 <a href="../principal.php">Principal</a></li>
-<h2>Informe de Participación</h2>
+<h2>Informe de Uso</h2>
 <?php
 require '../back/funciones.php';
 
