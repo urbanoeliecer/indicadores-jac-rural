@@ -12,8 +12,8 @@ nav:
   - Revisión de Sesión: revSesion.md
   - Panel Principal: principal.md
   - Coordinador:
-    - Ind Consolidada: coordinador/indInterConsMVC.md
-    - Ind Intervención: coordinador/indInterDetGraf.md
+    - Ind de intervencion consolidado: coordinador/indInterConsMVC.md
+    - Ind Intervención detallado: coordinador/indInterDetGraf.md
   - Administrador:
     - Inf. Mensual Resum. de Actividades (G): admin/infAgrGrafActivRes.md
     - Inf. Mensual Det. de Actividades (T): admin/infAgrTabActivMVC.md
